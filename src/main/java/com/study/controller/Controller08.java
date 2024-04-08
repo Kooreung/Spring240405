@@ -54,7 +54,24 @@ public class Controller08 {
                 new String[]{"한국","미국","케냐"});
     }
 
+    @RequestMapping("sub6")
+    public void method6(Model model) {
+        List<String> data = List.of("java", "css", "html", "jsp");
+        model.addAttribute("myList", data);
 
+        // /main8/sub6.jsp
+    }
+
+    @RequestMapping("sub7")
+    public void method7(Model model) {
+        List<String> data = List.of("🎉", "😍", "☺️");
+        model.addAttribute("myList", data);
+
+        List<Integer> numbers = List.of(10, 5, 0);
+        model.addAttribute("yourList", numbers);
+
+        // jsp 완성해서 위 6개의 값이 모두 출력되도록
+    }
 
     @RequestMapping("sub8")
     public void method8(Model model) {
