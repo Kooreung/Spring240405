@@ -30,7 +30,6 @@ public class Controller06 {
     // /main6/sub3?name=kim&age=44
     // /main6/sub3?name=lee
     // /main6/sub3?age=55
-    // todo: method3이 실행되도록 작성
     @RequestMapping("sub3")
     public void method3(@RequestParam(value = "name", required = false) String param1,
                         @RequestParam(value = "age", required = false) Integer param2) {
@@ -72,7 +71,6 @@ public class Controller06 {
     // /main6/sub7?age=66
     // /main6/sub7?name=강인
     // /main6/sub7
-
     //메소드 argument 타입이 기본타입(wrapper 포함), String 이면
     // @RequestParam 으로 간주
     @RequestMapping("sub7")
@@ -92,7 +90,6 @@ public class Controller06 {
     // /main6/sub9?age=44&age=55
     // /main6/sub9?city=서울
     // /main6/sub9?city=서울&city=부산
-
     @RequestMapping("sub9")
     public void method9(Integer[] age, String[] city) {
         System.out.println("age = " + Arrays.toString(age));
