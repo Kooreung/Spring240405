@@ -37,4 +37,38 @@ public class Controller07 {
         // view 로 포워딩
         return "view1";
     }
+
+    @RequestMapping("sub3")
+    public String method3() {
+        return "view2";
+        // /WEB-INF/view/view2.jsp 로 포워딩
+        // application.properties 에 설정하였기 때문
+    }
+
+    @RequestMapping("sub4")
+    public String method4() {
+        return "view3";
+        // /WEB-INF/view/view3.jsp 로 포워딩
+    }
+
+    @RequestMapping("sub5")
+    public String method5() {
+        return "/main7/sub5"; // 같은 경우가 많다.
+    }
+
+    @RequestMapping("sub6")
+    public String method6() {
+        return null; // 요청 경로와 같은 view 의 이름으로 결정
+    }
+
+    @RequestMapping("sub7")
+    public void method7() {
+        // 요청 경로와 같은 view 의 이름으로 결정
+        // view : /WEB-INF/view/main7/sup7.jsp
+    }
+
+    @RequestMapping("sub8")
+    public void method8() {
+        System.out.println("Controller07.method8");
+    }
 }
