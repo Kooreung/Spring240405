@@ -14,8 +14,8 @@ public class Controller09 {
 
     @RequestMapping("sub1")
     public void sub1(Model model){
-        MyBean091 myBean09 = new MyBean091();
-        model.addAttribute("person", myBean09);
+        MyBean091 myBean091 = new MyBean091();
+        model.addAttribute("person", myBean091);
     }
 
     @RequestMapping("sub2")
