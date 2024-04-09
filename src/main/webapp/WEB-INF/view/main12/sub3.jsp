@@ -28,5 +28,11 @@
     <c:forEach begin="1" end="9" var="num">
         <p>${dan} X ${num} = ${dan * num}</p>
     </c:forEach>
+
+    <hr>
+    <h5>구구단 ${dan}단 거꾸로</h5>
+    <c:forEach begin="1" end="9" var="num">
+        <p>${dan} X ${10 - num} = ${dan * (10 - num)}</p>
+    </c:forEach>
 </body>
 </html>
