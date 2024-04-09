@@ -35,5 +35,12 @@
     </ul>
 </c:if>
 
+<c:if test="${5 < 8 && 9 > 2}" var="result">
+    <p>출력1</p>
+</c:if>
+<c:if test="${not (5 < 8 && 9 > 2)}">
+    <p>출력2</p>
+</c:if>
+
 </body>
 </html>
