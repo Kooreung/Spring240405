@@ -29,6 +29,5 @@ public class Controller11 {
         model.addAttribute("attr3", Map.of("a", "b"));
         model.addAttribute("attr4", Map.of());
         model.addAttribute("attr5", null);
-
     }
 }
