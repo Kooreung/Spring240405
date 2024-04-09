@@ -27,7 +27,6 @@
 <c:if test="${empty products}">
     <p>상품이 없습니다.</p>
 </c:if>
-
 <c:if test="${!empty products}">
     <ul>
         <li>${products[0]}</li>
@@ -38,7 +37,7 @@
 <c:if test="${5 < 8 && 9 > 2}" var="result">
     <p>출력1</p>
 </c:if>
-<c:if test="${not (5 < 8 && 9 > 2)}">
+<c:if test="${not result}">
     <p>출력2</p>
 </c:if>
 
