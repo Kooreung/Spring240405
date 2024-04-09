@@ -1,6 +1,7 @@
 package com.study.controller;
 
 
+import com.study.domain.MyBean101;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -87,5 +88,12 @@ public class Controller10 {
         model.addAttribute("data","값 1");
         model.addAttribute("데이터","값 2");
         model.addAttribute("3","삼");
+    }
+
+    @RequestMapping("sub6")
+    public void method6(Model model) {
+        var data = new ArrayList<MyBean101>();
+
+        model.addAttribute()
     }
 }
