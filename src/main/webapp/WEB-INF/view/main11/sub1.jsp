@@ -72,6 +72,8 @@
 <h3>삼항연산</h3>
 <p>${true ? "hello" : "world"}</p>
 <p>${false ? "hello" : "world"}</p>
+<p>${age1 ge 20 ? "투표가능" : "투표불가능"}</p>
+<p>${age2 ge 20 ? "투표가능" : "투표불가능"}</p>
 
 </body>
 </html>

@@ -11,6 +11,9 @@ public class Controller11 {
     public void method1(Model model){
         model.addAttribute("num1", 50);
         model.addAttribute("num2", "20");
+
+        model.addAttribute("age1", 18);
+        model.addAttribute("age2", "30");
     }
 
 }
