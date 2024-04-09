@@ -37,4 +37,9 @@ public class Controller12 {
                         "age","13"
                 ));
     }
+
+    @RequestMapping("sub2")
+    public void method2(Model model){
+
+    }
 }
