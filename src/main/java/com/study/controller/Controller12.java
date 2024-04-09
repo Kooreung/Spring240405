@@ -48,6 +48,6 @@ public class Controller12 {
 
     @RequestMapping("sub3")
     public void method3(Model model){
-
+        model.addAttribute("dan",7);
     }
 }
