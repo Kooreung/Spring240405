@@ -67,6 +67,13 @@
 <p>${true or false}</p>
 <p>${false or true}</p>
 <p>${false or false}</p>
+<hr>
+<h4>!</h4>
+<p>${! true}</p>
+<p>${! false}</p>
+<h4>not</h4>
+<p>${not true}</p>
+<p>${not false}</p>
 
 <hr>
 <h3>삼항연산</h3>
