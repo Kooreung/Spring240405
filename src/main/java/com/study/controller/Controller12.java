@@ -40,6 +40,14 @@ public class Controller12 {
 
     @RequestMapping("sub2")
     public void method2(Model model){
+//        model.addAttribute("age",3);
+//        model.addAttribute("age",13);
+        model.addAttribute("age",23);
+//        model.addAttribute("age",33);
+    }
+
+    @RequestMapping("sub3")
+    public void method3(Model model){
 
     }
 }
