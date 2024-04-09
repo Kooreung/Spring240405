@@ -11,8 +11,22 @@
     <title>Title</title>
 </head>
 <body>
-<p>${myList[0].name}</p>
-<p>${myList[1].address}</p>
-<p>${myList[2].age}</p>
+<ul>
+    <li>${myList[0].name}</li>
+    <li>${myList[0].address}</li>
+    <li>${myList[0].age}</li>
+</ul>
+<hr>
+<ul>
+    <li>${myList[1].name}</li>
+    <li>${myList[1].address}</li>
+    <li>${myList[1].age}</li>
+</ul>
+<hr>
+<ul>
+    <li>${myList[2].name}</li>
+    <li>${myList[2].address}</li>
+    <li>${myList[2].age}</li>
+</ul>
 </body>
 </html>
