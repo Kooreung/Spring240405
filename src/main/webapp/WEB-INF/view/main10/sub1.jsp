@@ -11,11 +11,13 @@
     <title>Title</title>
 </head>
 <body>
+<%-- myList = data 에 접근 --%>
+<%-- key = HashMap 에 접근 --%>
+<%-- [1] = HashMap 내 리스트에 접근 --%>
     <p>${myList.key1[1]}</p>
     <p>${myList.key2[0]}</p>
     <p>${myList.key2[1]}</p>
-<%-- myList = data 에 접근 --%>
-<%-- key1 = HashMap 에 접근 --%>
-<%-- [1] = HashMap 내 리스트에 접근 --%>
+    <p>${myList["key 삼"][0]}</p>
+    <p>${myList["key 삼"][1]}</p>
 </body>
 </html>
