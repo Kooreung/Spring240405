@@ -75,5 +75,7 @@
 <p>${age1 ge 20 ? "투표가능" : "투표불가능"}</p>
 <p>${age2 ge 20 ? "투표가능" : "투표불가능"}</p>
 
+<hr>
+<p>quantity(${quantity}) * price(${price}) = ${quantity * price}</p>
 </body>
 </html>

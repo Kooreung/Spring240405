@@ -14,6 +14,9 @@ public class Controller11 {
 
         model.addAttribute("age1", 18);
         model.addAttribute("age2", "30");
+
+        model.addAttribute("quantity", 30);
+        model.addAttribute("price", 1.5);
     }
 
 }
