@@ -67,5 +67,11 @@
 <p>${true or false}</p>
 <p>${false or true}</p>
 <p>${false or false}</p>
+
+<hr>
+<h3>삼항연산</h3>
+<p>${true ? "hello" : "world"}</p>
+<p>${false ? "hello" : "world"}</p>
+
 </body>
 </html>
