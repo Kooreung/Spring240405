@@ -2,6 +2,7 @@ package com.study.controller;
 
 
 import com.study.domain.MyBean101;
+import com.study.domain.MyBean102;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -114,5 +115,32 @@ public class Controller10 {
         data.add(e3);
 
         model.addAttribute("myList",data);
+    }
+
+    @RequestMapping("sub7")
+    public void method7(Model model) {
+        var list = new ArrayList<MyBean102>();
+
+        MyBean102 car1 = new MyBean102();
+        MyBean102 car2 = new MyBean102();
+        MyBean102 car3 = new MyBean102();
+
+        car1.setModelName("Hyundai");
+        car1.setPrice(3000);
+        car1.setColor("Gray");
+
+        car2.setModelName("Honda");
+        car2.setPrice(5000);
+        car2.setColor("Red");
+
+        car3.setModelName("BMW");
+        car3.setPrice(8000);
+        car3.setColor("Blue");
+
+        list.add(car1);
+        list.add(car2);
+        list.add(car3);
+
+        model.addAttribute("cars",list);
     }
 }
