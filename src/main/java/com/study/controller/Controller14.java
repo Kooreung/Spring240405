@@ -85,4 +85,24 @@ public class Controller14 {
     public String sub10(MyBean145 o1){
         return "/main14/sub9";
     }
+
+    // /main14/sub11?city=서울&country=한국&price=3000
+    @RequestMapping("sub11")
+    public void sub11(MyBean146 o1){
+        System.out.println(o1.getCity());
+        System.out.println(o1.getCountry());
+        System.out.println(o1.getPrice());
+    }
+
+    @RequestMapping("sub12")
+    public void sub12(Integer price,    // @RequestParam
+                      String car,   // @RequestParam
+                      MyBean147 o1, // @ModelAttribute
+                      MyBean146 o2   // @ModelAttribute
+    ){
+        System.out.println(price);
+        System.out.println(car);
+        System.out.println(o1);
+        System.out.println(o2);
+    }
 }
