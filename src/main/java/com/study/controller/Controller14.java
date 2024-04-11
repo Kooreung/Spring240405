@@ -2,6 +2,7 @@ package com.study.controller;
 
 import com.study.domain.MyBean141;
 import com.study.domain.MyBean142;
+import com.study.domain.MyBean143;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -50,7 +51,18 @@ public class Controller14 {
     @RequestMapping("sub5")
     public String sub5(MyBean142 o1){
         o1.setName("유재석");
-
         return "/main14/sub3";
+    }
+
+    @RequestMapping("sub6")
+    public void sub6(MyBean142 o1){
+        o1.setName("카리나");
+    }
+
+    @RequestMapping("sub7")
+    public String sub7(MyBean143 o1){
+        o1.setAddress("신촌");
+
+        return "/main14/sub6";
     }
 }
