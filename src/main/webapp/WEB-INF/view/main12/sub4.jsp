@@ -27,5 +27,13 @@
     <c:forEach items="${foods}" var="food" begin="1" end="3">
         <p>음식 : ${food}</p>
     </c:forEach>
+    <hr>
+    <c:forEach items="${myMap}" var="entry">
+        <p>${entry}</p>
+    </c:forEach>
+    <hr>
+    <c:forEach items="${cars}" var="car">
+        <p>${car}</p>
+    </c:forEach>
 </body>
 </html>
