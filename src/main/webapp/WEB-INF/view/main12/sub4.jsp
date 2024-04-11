@@ -23,5 +23,9 @@
     <c:forEach items="${foods}" var="elem">
         <p>음식 : ${elem}</p>
     </c:forEach>
+    <hr>
+    <c:forEach items="${foods}" var="food" begin="1" end="3">
+        <p>음식 : ${food}</p>
+    </c:forEach>
 </body>
 </html>
