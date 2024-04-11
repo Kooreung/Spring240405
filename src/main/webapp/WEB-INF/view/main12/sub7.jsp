@@ -50,7 +50,14 @@
                 <td>${player.team}</td>
                 <td>${player.country}</td>
                 <td>${player.event}</td>
-                <td>${player.positions}</td>
+                <td>
+                    <c:forEach items="${player.positions}" var="position" varStatus="stat">
+                        ${position}
+                        <c:if test="${not stat.last}">
+                            ,
+                        </c:if>
+                    </c:forEach>
+                </td>
             </tr>
         </c:forEach>
     </tbody>
