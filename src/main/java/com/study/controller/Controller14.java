@@ -4,6 +4,7 @@ import com.study.domain.MyBean141;
 import com.study.domain.MyBean142;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -33,5 +34,23 @@ public class Controller14 {
 
         model.addAttribute(o1);
         model.addAttribute(List.of(o1, o2));
+    }
+
+    @RequestMapping("sub3")
+    public void sub3(@ModelAttribute("player1") MyBean142 o1){
+        o1.setName("오타니");
+    }
+
+    @RequestMapping("sub4")
+    public String sub4(@ModelAttribute MyBean142 o1){
+        o1.setName("김민재");
+        return "/main14/sub3";
+    }
+
+    @RequestMapping("sub5")
+    public String sub5(MyBean142 o1){
+        o1.setName("유재석");
+
+        return "/main14/sub3";
     }
 }
