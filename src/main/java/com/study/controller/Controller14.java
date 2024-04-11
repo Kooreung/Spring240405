@@ -1,9 +1,6 @@
 package com.study.controller;
 
-import com.study.domain.MyBean141;
-import com.study.domain.MyBean142;
-import com.study.domain.MyBean143;
-import com.study.domain.MyBean144;
+import com.study.domain.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -66,9 +63,26 @@ public class Controller14 {
         return "/main14/sub6";
     }
 
-    // 할당 방법 : /main14/sub?city=london&address=ny
+    // /main14/sub?city=london&address=ny
     @RequestMapping("sub8")
     public void sub8(MyBean144 o1){
         System.out.println(o1);
+    }
+
+    // /main14/sub9?name=흥민&address=런던&age=44
+    @RequestMapping("sub9")
+    public void sub9(String name, Integer age, String address, Model model){
+        MyBean145 o1 = new MyBean145();
+        o1.setName(name);
+        o1.setAddress(address);
+        o1.setAge(age);
+
+        model.addAttribute("myBean145", o1);
+    }
+
+    // 위와 동일
+    @RequestMapping("sub10")
+    public String sub10(MyBean145 o1){
+        return "/main14/sub9";
     }
 }
