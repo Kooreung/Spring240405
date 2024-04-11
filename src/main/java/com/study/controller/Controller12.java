@@ -66,4 +66,9 @@ public class Controller12 {
                 "volvo", "sweeden"
         ));
     }
+
+    @RequestMapping("sub5")
+    public void method5(Model model){
+        model.addAttribute("myList",List.of("java", "css", "react"));
+    }
 }
