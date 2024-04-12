@@ -30,4 +30,8 @@ public class Controller15 {
     @RequestMapping("sub6")
     public void sub6(){
     }
+
+    @RequestMapping("sub7")
+    public void sub7(){
+    }
 }
