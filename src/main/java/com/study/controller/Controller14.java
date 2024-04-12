@@ -94,11 +94,13 @@ public class Controller14 {
         System.out.println(o1.getPrice());
     }
 
+    // /main14/sub12?car=tesla&price=2000&model=k5&country=us
     @RequestMapping("sub12")
-    public void sub12(Integer price,    // @RequestParam
-                      String car,   // @RequestParam
-                      MyBean147 o1, // @ModelAttribute
-                      MyBean146 o2   // @ModelAttribute
+    public void sub12(
+            Integer price,    // @RequestParam
+            String car,   // @RequestParam
+            MyBean147 o1, // @ModelAttribute
+            MyBean146 o2   // @ModelAttribute
     ){
         System.out.println(price);
         System.out.println(car);
