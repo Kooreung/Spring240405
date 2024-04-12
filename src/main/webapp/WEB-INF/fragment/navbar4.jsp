@@ -42,9 +42,13 @@
 <div class="user">
     <c:if test="${not empty sessionScope.userName}" var="loggedIn">
         ${sessionScope.userName}
+
     </c:if>
     <c:if test="${not loggedIn}">
         Guest
     </c:if>
     님
+    <c:if test="${loggedIn}">
+        <a href="/main17/sub10">logout</a>
+    </c:if>
 </div>

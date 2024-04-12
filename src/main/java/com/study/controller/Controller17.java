@@ -61,4 +61,9 @@ public class Controller17 {
     public void sub9(HttpSession session){
         session.invalidate();
     }
+
+    @RequestMapping("sub10")
+    public void sub10(HttpSession session){
+        session.invalidate();
+    }
 }
