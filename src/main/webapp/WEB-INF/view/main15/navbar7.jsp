@@ -17,6 +17,6 @@
 </style>
 
 <div>
-    <a class="${param.active eq 'sub12' ? 'switchOn' : ''}" href="/main15/sub12">sub12</a>
-    <a class="${param.active eq 'sub13' ? 'switchOn' : ''}" href="/main15/sub13">sub12</a>
+    <a class="${param.current eq 'sub12' ? 'switchOn' : ''}" href="/main15/sub12">sub12</a>
+    <a class="${param.current eq 'sub13' ? 'switchOn' : ''}" href="/main15/sub13">sub13</a>
 </div>

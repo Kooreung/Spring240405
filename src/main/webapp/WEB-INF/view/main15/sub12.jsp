@@ -12,7 +12,9 @@
     <title>Title</title>
 </head>
 <body>
-<c:import url="navbar7.jsp?active=sub12" />
+<c:import url="navbar7.jsp">
+    <c:param name="current" value="sub12" />
+</c:import>
 <div>sub12 content --</div>
 
 </body>
