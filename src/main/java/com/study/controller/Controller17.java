@@ -25,4 +25,19 @@ public class Controller17 {
     public String sub2(Model model){
         return "/main17/sub1";
     }
+
+    @RequestMapping("sub3")
+    public void sub3(String id, HttpSession session){
+        if (id != null && !id.isBlank()) {
+            session.setAttribute("userName", id);
+        }
+    }
+
+    @RequestMapping("sub4")
+    public void sub4(Model model){
+    }
+
+    @RequestMapping("sub5")
+    public void sub5(Model model){
+    }
 }
