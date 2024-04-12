@@ -30,6 +30,14 @@
     <%--  중복이 있다면 좁은 영역의 attribute 부터 찾는다  --%>
     <%--  즉 page value3 발생  --%>
 </div>
+<div>
+    <p>sub 7 의 page 영역 attr 3 : ${pageScope.attr3} </p>
+    <p>sub 7 의 page 영역 attr 3 : ${pageScope["attr3"]} </p>
+</div>
+<div>
+    <p>sub 7 의 request 영역 attr 3 : ${requestScope.attr3} </p>
+    <p>sub 7 의 request 영역 attr 3 : ${requestScope["attr3"]} </p>
+</div>
 
 </body>
 </html>
