@@ -98,7 +98,5 @@
         <input type="submit" value="확인">
     </div>
 </form>
-
-
 </body>
 </html>

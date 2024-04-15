@@ -19,11 +19,9 @@
     <input type="text" value="messi" readonly>
 </div>
 <div>
-<%--  표시되는 input 의 길이  --%>
     <input type="text" value="messi" size="5">
 </div>
 <div>
-<%--  입력값 길이 제한  --%>
     <input type="text" maxlength="5">
 </div>
 <div>
