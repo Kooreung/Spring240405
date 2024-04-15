@@ -79,4 +79,22 @@ public class Controller20 {
         System.out.println(phone);
         System.out.println(book);
     }
+
+    @RequestMapping("sub16")
+    public void sub16(){
+    }
+
+    @RequestMapping("sub17")
+    public void sub17(String id, String password, String describe){
+        System.out.println("id = " + id);
+        System.out.println("password = " + password);
+        System.out.println("describe = " + describe);
+    }
+
+    @RequestMapping("sub18")
+    public void sub18(String name, String city, String address){
+        System.out.println("name = " + name);
+        System.out.println("city = " + city);
+        System.out.println("address = " + address);
+    }
 }
