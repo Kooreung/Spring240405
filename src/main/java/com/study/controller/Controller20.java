@@ -24,4 +24,13 @@ public class Controller20 {
     public void sub5(String player, Model model){
         model.addAttribute("result",player + " 검색");
     }
+    @RequestMapping("sub6")
+    public void sub6(String address, String type ,Model model){
+        model.addAttribute("result",address + " 의 " + type + " 검색");
+    }
+    @RequestMapping("sub7")
+    public void sub7(String name, Integer age ,Model model){
+        model.addAttribute("playerName", "선수 이름 : " + name);
+        model.addAttribute("playerAge", "선수 나이 : " + age);
+    }
 }

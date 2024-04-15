@@ -20,5 +20,23 @@
     <input type="text" name="player" placeholder="이름을 입력해 주세요.">
     <input type="submit">
 </form>
+<hr>
+<form action="/main20/sub6">
+    <input type="text" name="address" placeholder="주소를 입력해 주세요.">
+    <input type="submit">
+</form>
+<hr>
+<form action="/main20/sub7">
+    <div>
+        이름 <input type="text" name="name">
+    </div>
+    <div>
+        나이 <input type="number" min="1" max="100" name="age">
+    </div>
+    <div>
+        <input type="submit">
+    </div>
+</form>
+
 </body>
 </html>
