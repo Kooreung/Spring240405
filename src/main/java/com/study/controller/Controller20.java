@@ -53,4 +53,30 @@ public class Controller20 {
     public void sub10(MyBean202 data){
         System.out.println(data);
     }
+
+    @RequestMapping("sub11")
+    public void sub11(){
+    }
+    @RequestMapping("sub12")
+    public void sub12(String type,
+                      String content,
+                      String city){
+        System.out.println(type);
+        System.out.println(content);
+        System.out.println(city);
+    }
+
+    @RequestMapping("sub13")
+    public void sub13(String city){
+        System.out.println("city = " + city);
+    }
+
+    @RequestMapping("sub15")
+    public void sub15(String type,
+                      String phone,
+                      String book){
+        System.out.println(type);
+        System.out.println(phone);
+        System.out.println(book);
+    }
 }
