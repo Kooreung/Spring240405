@@ -13,6 +13,8 @@
 </head>
 <body>
 <form action="/main22/sub7" method="post">
+
+
     <div>
         id <input type="text" name="id">
     </div>
