@@ -44,6 +44,26 @@ public class Controller22 {
 
     @GetMapping("sub5")
     public void method5(){
+    }
+
+    @GetMapping("sub6")
+    public void method6(){
+        // login form 있는 view 로 forward
+    }
+
+    @PostMapping("sub7")
+    public String method7(String id, String password){
+        if (id.isEmpty() && password.isEmpty()) {
+            return "redirect:/main22/sub6";
+        } else if (id.equals(password)) {
+            return "redirect:/main22/sub8";
+        } else {
+            return "redirect:/main22/sub6";
+        }
+    }
+
+    @GetMapping("sub8")
+    public void method8(){
 
     }
 }
