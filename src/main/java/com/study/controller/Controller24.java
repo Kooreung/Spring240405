@@ -9,15 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 @Controller
 @RequestMapping("main24")
-public class Connection24 {
+public class Controller24 {
     @Autowired
     private DataSource dataSource;
 
@@ -67,5 +64,23 @@ public class Connection24 {
             }
         }
         model.addAttribute("customers", list);
+    }
+
+    @RequestMapping("sub3")
+    public void method3(Model model) throws Exception {
+        var list = new ArrayList<String>();
+        String sql = """
+                SELECT DISTINCT Country FROM Customers
+                """;
+        Connection con = dataSource.getConnection();
+        Statement statement = con.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+        try (resultSet; statement; con) {
+            while (resultSet.next()) {
+                String country = resultSet.getString(1);
+                list.add(country);
+            }
+        }
+        model.addAttribute("countryList", list);
     }
 }
