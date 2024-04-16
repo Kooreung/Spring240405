@@ -2,9 +2,12 @@ package com.study.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("main22")
@@ -91,4 +94,40 @@ public class Controller22 {
     public void method10(String condition){
         System.out.println("condition" + condition);
     }
+
+    @GetMapping("sub11")
+    public String method11(RedirectAttributes rttr){
+        // redirection 시, 정보 전달은 RedirectAttributes 활용
+        // addAttribute : Query String 에 붙음
+        // addFlashAttribute : Model 에 붙음
+        rttr.addAttribute("type", "soccer");
+        rttr.addFlashAttribute("attr1", List.of("car", "food", "phone"));
+
+        return "redirect:/main22/sub12";
+    }
+
+    @GetMapping("sub12")
+    public void method12(@ModelAttribute("attr1") List<String> attr1) {
+        System.out.println("attr1 = " + attr1);
+    }
+
+    @GetMapping("sub13")
+    public void method13(){}
+
+    @PostMapping("sub14")
+    public String method14(String id, String pw, RedirectAttributes rttr){
+        boolean ok = id.equals(pw);
+
+        if (ok) {
+            rttr.addFlashAttribute("message", "로그인 성공");
+            return "redirect:/main22/sub15";
+        } else {
+            rttr.addFlashAttribute("message", "로그인 실패");
+            return "redirect:/main22/sub13";
+        }
+    }
+
+    @GetMapping("sub15")
+    public void method15(){}
+
 }
