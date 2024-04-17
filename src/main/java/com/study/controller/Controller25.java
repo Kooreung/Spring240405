@@ -10,10 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import javax.xml.transform.Result;
+import java.sql.*;
 import java.util.ArrayList;
 
 @Controller
@@ -72,10 +70,39 @@ public class Controller25 {
             int id = rs.getInt(1);
             String name = rs.getString(2);
             String unit = rs.getString(5);
-            Double price = rs.getDouble(6);
+            double price = rs.getDouble(6);
 
             MyBean252 obj = new MyBean252(id, name, unit, price);
             list.add(obj);
+        }
+        model.addAttribute("products", list);
+    }
+
+    @GetMapping("sub3")
+    public void method3(String search, Model model) throws Exception {
+        var list = new ArrayList<MyBean252>();
+
+        String sql = """
+                SELECT * 
+                FROM Products
+                WHERE ProductName = ?
+                """;
+
+        Connection conn = dataSource.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        // 첫 번째 parameter : 물음표 위치
+        // 두 번째 parameter : 넣을 값
+        pstmt.setString(1, search);
+
+        ResultSet rs = pstmt.executeQuery();
+        while(rs.next()) {
+            MyBean252 row = new MyBean252(
+                    rs.getInt(1),
+                    rs.getString(2),
+                    rs.getString(5),
+                    rs.getDouble(6));
+
+            list.add(row);
         }
         model.addAttribute("products", list);
     }

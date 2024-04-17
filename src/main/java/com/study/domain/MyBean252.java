@@ -9,5 +9,5 @@ public class MyBean252 {
     private int id;
     private String name;
     private String unit;
-    private Double price;
+    private double price;
 }
