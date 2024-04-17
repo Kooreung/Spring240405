@@ -2,6 +2,7 @@ package com.study.controller;
 
 import com.study.domain.MyBean251;
 import com.study.domain.MyBean252;
+import com.study.domain.MyBean253;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -105,5 +106,33 @@ public class Controller25 {
             list.add(row);
         }
         model.addAttribute("products", list);
+    }
+
+    @GetMapping("sub4")
+    public void method4(String searchName, Model model) throws Exception {
+        var list = new ArrayList<MyBean253>();
+
+        String sql = """
+                SELECT * 
+                FROM Customers
+                WHERE CustomerName = ?
+                """;
+
+        Connection conn = dataSource.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1,searchName);
+        ResultSet rs = pstmt.executeQuery();
+        while (rs.next()) {
+            MyBean253 row = new MyBean253(
+                    rs.getInt(1),
+                    rs.getString(2),
+                    rs.getString(4),
+                    rs.getString(5),
+                    rs.getString(7)
+            );
+
+            list.add(row);
+        }
+        model.addAttribute("customers", list);
     }
 }
