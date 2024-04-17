@@ -28,32 +28,32 @@
 </div>
 <hr>
 <div>
-        <table>
-            <thead>
+    <table>
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>contact</th>
+            <th>address</th>
+            <th>city</th>
+            <th>post</th>
+            <th>country</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${customerList}" var="customer">
             <tr>
-                <th>ID</th>
-                <th>이름</th>
-                <th>주소</th>
-                <th>지역</th>
-                <th>국가</th>
+                <td>${customer.id}</td>
+                <td>${customer.name}</td>
+                <td>${customer.contactName}</td>
+                <td>${customer.address}</td>
+                <td>${customer.city}</td>
+                <td>${customer.postalCode}</td>
+                <td>${customer.country}</td>
             </tr>
-            </thead>
-            <tbody>
-                <c:forEach items="${customerList}" var="customer">
-                    <tr>
-                        <td>${customer.id}번 고객</td>
-                        <td>${customer.customerName}
-                        </td>
-                        <td>${customer.address}
-                        </td>
-                        <td>${customer.city}
-                        </td>
-                        <td>${customer.country}
-                        </td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
+        </c:forEach>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

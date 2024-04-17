@@ -109,31 +109,43 @@ public class Controller25 {
     }
 
     @GetMapping("sub4")
-    public void method4(String searchName, Model model) throws Exception {
+    public String method4(String search, Model model) throws SQLException {
+        String sql = "SELECT * FROM Customers WHERE CustomerName = ?";
         var list = new ArrayList<MyBean253>();
-
-        String sql = """
-                SELECT * 
-                FROM Customers
-                WHERE CustomerName = ?
-                """;
 
         Connection conn = dataSource.getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setString(1,searchName);
-        ResultSet rs = pstmt.executeQuery();
-        while (rs.next()) {
-            MyBean253 row = new MyBean253(
-                    rs.getInt(1),
-                    rs.getString(2),
-                    rs.getString(4),
-                    rs.getString(5),
-                    rs.getString(7)
-            );
+        pstmt.setString(1, search);
 
-            list.add(row);
+        ResultSet rs = pstmt.executeQuery();
+
+        try (rs; conn; pstmt) {
+
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String name = rs.getString(2);
+                String contactName = rs.getString(3);
+                String address = rs.getString(4);
+                String city = rs.getString(5);
+                String postalCode = rs.getString(6);
+                String country = rs.getString(7);
+
+                MyBean253 obj = new MyBean253();
+                obj.setId(id);
+                obj.setName(name);
+                obj.setContactName(contactName);
+                obj.setAddress(address);
+                obj.setCity(city);
+                obj.setPostalCode(postalCode);
+                obj.setCountry(country);
+
+                list.add(obj);
+            }
         }
-        model.addAttribute("customers", list);
+        model.addAttribute("customerList", list);
+        model.addAttribute("prevSearch", search);
+
+        return "main25/sub4CustomerList";
     }
 
     @GetMapping("sub5")
@@ -151,15 +163,24 @@ public class Controller25 {
         ResultSet rs = pstmt.executeQuery();
 
         while (rs.next()) {
-            MyBean253 row = new MyBean253(
-                    rs.getInt(1),
-                    rs.getString(2),
-                    rs.getString(4),
-                    rs.getString(5),
-                    rs.getString(7)
-            );
+            int id = rs.getInt(1);
+            String name = rs.getString(2);
+            String contactName = rs.getString(3);
+            String address = rs.getString(4);
+            String city = rs.getString(5);
+            String postalCode = rs.getString(6);
+            String country = rs.getString(7);
 
-            list.add(row);
+            MyBean253 obj = new MyBean253();
+            obj.setId(id);
+            obj.setName(name);
+            obj.setContactName(contactName);
+            obj.setAddress(address);
+            obj.setCity(city);
+            obj.setPostalCode(postalCode);
+            obj.setCountry(country);
+
+            list.add(obj);
         }
         model.addAttribute("customerList", list);
         model.addAttribute("prevSearch", search);
@@ -206,4 +227,37 @@ public class Controller25 {
         return "main25/sub6Products";
     }
 
+    // 조회 문자열이 contactName 또는 customerName 에 포함된 고객들 조회
+    @GetMapping("sub7")
+    public String method7(String search, Model model) throws Exception {
+        var list = new ArrayList<MyBean253>();
+        String sql = """
+                SELECT *
+                FROM Customers
+                WHERE CustomerName LIKE ?
+                   OR ContactName LIKE ?
+                """;
+        String keyword = "%" + search + "%";
+        Connection conn = dataSource.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, keyword);
+        pstmt.setString(2, keyword);
+        ResultSet rs = pstmt.executeQuery();
+
+        while (rs.next()) {
+            MyBean253 obj = new MyBean253();
+            obj.setId(rs.getInt(1));
+            obj.setName(rs.getString(2));
+            obj.setContactName(rs.getString(3));
+            obj.setAddress(rs.getString(4));
+            obj.setCity(rs.getString(5));
+            obj.setPostalCode(rs.getString(6));
+            obj.setCountry(rs.getString(7));
+            list.add(obj);
+        }
+        model.addAttribute("customerList", list);
+        model.addAttribute("prevSearch", search);
+
+        return "main25/sub4CustomerList";
+    }
 }
