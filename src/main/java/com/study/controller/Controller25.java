@@ -1,6 +1,7 @@
 package com.study.controller;
 
 import com.study.domain.MyBean251;
+import com.study.domain.MyBean252;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,7 +51,31 @@ public class Controller25 {
 
             }
         }
-
         model.addAttribute("employees", list);
+    }
+
+    @GetMapping("sub2")
+        public void method2(@RequestParam(value = "name" , required = false) String search,
+                            Model model) throws Exception {
+        var list = new ArrayList<MyBean252>();
+
+        String sql = STR."""
+                SELECT *
+                FROM Products
+                WHERE Product = '\{search}'
+                """;
+
+        Connection con = dataSource.getConnection();
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+
+        while (rs.next()) {
+            String name = rs.getString(1);
+            String unit = rs.getString(2);
+            String price = rs.getString(3);
+
+            MyBean252 obj = new MyBean252(name, unit, price);
+            list.add(obj);
+        }
     }
 }

@@ -36,7 +36,6 @@
         <textarea cols="30" rows="10" readonly></textarea>
     </div>
     <hr>
-
 </c:forEach>
 </body>
 </html>
