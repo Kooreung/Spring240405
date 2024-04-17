@@ -10,6 +10,11 @@
 <html>
 <head>
     <title>Title</title>
+    <style>
+        table, tr, th, td {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
 <h3>고객 명단</h3>
@@ -22,24 +27,33 @@
 </div>
 <hr>
 <div>
-    <c:forEach items="${customers}" var="customer">
-        <h4>${customer.id}번 고객</h4>
-        <div>
-            고객 이름 : ${customer.customerName}
-        </div>
-        <div>
-            집주소 :
-            <input type="text" value="${customer.address}" readonly>
-        </div>
-        <div>
-            지역 :
-            <input type="text" value="${customer.city}" readonly>
-        </div>
-        <div>
-            국가 :
-            <input type="text" value="${customer.country}" readonly>
-        </div>
-    </c:forEach>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>이름</th>
+                <th>주소</th>
+                <th>지역</th>
+                <th>국가</th>
+            </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${customers}" var="customer">
+                    <tr>
+                        <td>${customer.id}번 고객</td>
+                        <td>${customer.customerName}
+                        </td>
+                        <td>${customer.address}
+                        </td>
+                        <td>${customer.city}
+                        </td>
+                        <td>${customer.country}
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+
 </div>
 
 </body>
