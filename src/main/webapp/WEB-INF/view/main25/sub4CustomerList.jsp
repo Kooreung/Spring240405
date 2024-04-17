@@ -19,9 +19,10 @@
 <body>
 <h3>고객 명단</h3>
 <div>
-    <form action="/main25/sub4">
+<%--  action 값이 없거나 생략되면 현재 요청 경로로 전달  --%>
+    <form>
         고객조회 :
-        <input type="text" name="searchName" placeholder="이름을 입력하세요.">
+        <input value="${prevSearch}" type="text" name="search" placeholder="이름을 입력하세요.">
         <input type="submit" value="검색">
     </form>
 </div>
@@ -38,7 +39,7 @@
             </tr>
             </thead>
             <tbody>
-                <c:forEach items="${customers}" var="customer">
+                <c:forEach items="${customerList}" var="customer">
                     <tr>
                         <td>${customer.id}번 고객</td>
                         <td>${customer.customerName}
@@ -53,8 +54,6 @@
                 </c:forEach>
             </tbody>
         </table>
-
 </div>
-
 </body>
 </html>

@@ -135,4 +135,35 @@ public class Controller25 {
         }
         model.addAttribute("customers", list);
     }
+
+    @GetMapping("sub5")
+    public String method5(String search, Model model) throws Exception {
+        var list = new ArrayList<MyBean253>();
+        String sql = """
+                SELECT * FROM Customers
+                WHERE CustomerName LIKE ?
+                """;
+        String keyword = "%" + search + "%";
+
+        Connection conn = dataSource.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1,keyword);
+        ResultSet rs = pstmt.executeQuery();
+
+        while (rs.next()) {
+            MyBean253 row = new MyBean253(
+                    rs.getInt(1),
+                    rs.getString(2),
+                    rs.getString(4),
+                    rs.getString(5),
+                    rs.getString(7)
+            );
+
+            list.add(row);
+        }
+        model.addAttribute("customerList", list);
+        model.addAttribute("prevSearch", search);
+
+        return "main25/sub4CustomerList";
+    }
 }
