@@ -3,7 +3,7 @@ package com.study.domain;
 import lombok.Data;
 
 @Data
-public class MyBean253 {
+public class MyBean255CustomerList {
     private int id;
     private String name;
     private String contactName;
