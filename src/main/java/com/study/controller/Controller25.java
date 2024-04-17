@@ -3,6 +3,7 @@ package com.study.controller;
 import com.study.domain.MyBean251;
 import com.study.domain.MyBean252;
 import com.study.domain.MyBean253;
+import com.study.domain.MyBean255Products;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.sql.DataSource;
-import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -166,4 +166,44 @@ public class Controller25 {
 
         return "main25/sub4CustomerList";
     }
+
+    @GetMapping("sub6")
+    public String method6(String search, Model model) throws Exception {
+        var list = new ArrayList<MyBean255Products>();
+        String sql = """
+                SELECT *
+                FROM Products
+                WHERE ProductName LIKE ?
+                """;
+        String keyword = "%" + search + "%";
+
+        Connection conn = dataSource.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1,keyword);
+        ResultSet rs = pstmt.executeQuery();
+
+        while (rs.next()) {
+            int id = rs.getInt(1);
+            String name = rs.getString(2);
+            String supplierId = rs.getString(3);
+            String CategoryId = rs.getString(4);
+            String Unit = rs.getString(5);
+            double price = rs.getDouble(6);
+
+            MyBean255Products obj = new MyBean255Products();
+            obj.setId(id);
+            obj.setName(name);
+            obj.setSupplierId(supplierId);
+            obj.setCategoryId(CategoryId);
+            obj.setUnit(Unit);
+            obj.setPrice(price);
+
+            list.add(obj);
+        }
+        model.addAttribute("products", list);
+        model.addAttribute("prevSearch", search);
+
+        return "main25/sub6Products";
+    }
+
 }
