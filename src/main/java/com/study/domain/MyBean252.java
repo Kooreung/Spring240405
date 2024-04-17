@@ -6,7 +6,8 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class MyBean252 {
+    private int id;
     private String name;
     private String unit;
-    private String price;
+    private Double price;
 }

@@ -27,7 +27,7 @@
             <input type="text" value="${product.name}" readonly>
         </p>
         <p>
-            단위 :
+            수량 :
             <input type="text" value="${product.unit}" readonly>
         </p>
         <p>

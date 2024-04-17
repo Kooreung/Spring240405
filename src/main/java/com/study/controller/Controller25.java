@@ -58,11 +58,10 @@ public class Controller25 {
         public void method2(@RequestParam(value = "name" , required = false) String search,
                             Model model) throws Exception {
         var list = new ArrayList<MyBean252>();
-
         String sql = STR."""
                 SELECT *
                 FROM Products
-                WHERE Product = '\{search}'
+                WHERE ProductName = "\{search}"
                 """;
 
         Connection con = dataSource.getConnection();
@@ -70,12 +69,14 @@ public class Controller25 {
         ResultSet rs = stmt.executeQuery(sql);
 
         while (rs.next()) {
-            String name = rs.getString(1);
-            String unit = rs.getString(2);
-            String price = rs.getString(3);
+            int id = rs.getInt(1);
+            String name = rs.getString(2);
+            String unit = rs.getString(5);
+            Double price = rs.getDouble(6);
 
-            MyBean252 obj = new MyBean252(name, unit, price);
+            MyBean252 obj = new MyBean252(id, name, unit, price);
             list.add(obj);
         }
+        model.addAttribute("products", list);
     }
 }
