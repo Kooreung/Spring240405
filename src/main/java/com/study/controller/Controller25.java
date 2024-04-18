@@ -276,18 +276,22 @@ public class Controller25 {
         pstmt.setString(2, keyword);
         ResultSet rs = pstmt.executeQuery();
 
-        while (rs.next()) {
-            MyBean255EmployeeList obj = new MyBean255EmployeeList();
-            obj.setId(rs.getInt(1));
-            obj.setLastName(rs.getString(2));
-            obj.setFirstName(rs.getString(3));
-            obj.setBirthDate(rs.getString(4));
-            obj.setPhoto(rs.getString(5));
-            obj.setNotes(rs.getString(6));
+        try(rs; pstmt; conn) {
+            while (rs.next()) {
+                MyBean255EmployeeList obj = new MyBean255EmployeeList();
+                obj.setId(rs.getInt(1));
+                obj.setLastName(rs.getString(2));
+                obj.setFirstName(rs.getString(3));
+                obj.setBirthDate(rs.getString(4));
+                obj.setPhoto(rs.getString(5));
+                obj.setNotes(rs.getString(6));
 
-            list.add(obj);
+                list.add(obj);
+            }
         }
+
         model.addAttribute("employeeList", list);
         model.addAttribute("prevSearch", search);
     }
+
 }
