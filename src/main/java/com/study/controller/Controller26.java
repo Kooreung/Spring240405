@@ -1,5 +1,7 @@
 package com.study.controller;
 
+import com.study.domain.MyBean255Category;
+import com.study.domain.MyBean255CustomerList;
 import com.study.domain.MyBean255OrderList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,10 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 @Controller
@@ -52,5 +51,86 @@ public class Controller26 {
         model.addAttribute("end", end);
 
         return "main26/sub1OrderList";
+    }
+
+    @GetMapping("sub2")
+    public String sub2(String[]country, Model model) throws Exception {
+        Connection conn = dataSource.getConnection();
+
+        if (country != null && country.length > 0) {
+            String questionMarks = "";
+            for (int i = 0; i < country.length; i++) {
+                questionMarks = questionMarks + "?";
+                if (i != country.length - 1) {
+                    questionMarks = questionMarks + ",";
+                }
+            }
+            String customerSql = STR."""
+                SELECT *
+                FROM Customers
+                WHERE Country IN (\{questionMarks})
+                """;
+
+            var customerList = new ArrayList<MyBean255CustomerList>();
+            PreparedStatement pstmt = conn.prepareStatement(customerSql);
+            for (int i = 0; i < country.length; i++) {
+                pstmt.setString((i + 1), country[i]);
+            }
+            ResultSet resultSet = pstmt.executeQuery();
+            try (pstmt; resultSet) {
+
+                while (resultSet.next()) {
+                    MyBean255CustomerList data = new MyBean255CustomerList();
+                    data.setId(resultSet.getInt(1));
+                    data.setName(resultSet.getString(2));
+                    data.setContactName(resultSet.getString(3));
+                    data.setAddress(resultSet.getString(4));
+                    data.setCity(resultSet.getString(5));
+                    data.setPostalCode(resultSet.getString(6));
+                    data.setCountry(resultSet.getString(7));
+                    customerList.add(data);
+                }
+                model.addAttribute("customerList", customerList);
+            }
+        }
+
+        String sql = """
+                SELECT DISTINCT Country
+                FROM Customers
+                """;
+
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        var countryList = new ArrayList<String>();
+
+        try (stmt; rs;){
+            while (rs.next()) {
+                countryList.add(rs.getString(1));
+            }
+            model.addAttribute("countryList", countryList);
+        }
+
+        return "main26/sub2CustomerList";
+    }
+
+    @GetMapping("sub3")
+    public String method3(Model model) throws Exception {
+        Connection conn = dataSource.getConnection();
+        String categorySql = "SELECT * FROM Categories";
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(categorySql);
+        var categoryList = new ArrayList<MyBean255Category>();
+        try (rs; stmt;) {
+            while (rs.next()) {
+                MyBean255Category category = new MyBean255Category();
+                category.setId(rs.getInt(1));
+                category.setName(rs.getString(2));
+
+                categoryList.add(category);
+            }
+            model.addAttribute("categoryList", categoryList);
+        }
+
+        return "main26/sub3ProductList";
     }
 }
