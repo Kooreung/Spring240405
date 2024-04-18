@@ -3,11 +3,13 @@ package com.study.controller;
 import com.study.domain.MyBean255Category;
 import com.study.domain.MyBean255CustomerList;
 import com.study.domain.MyBean255OrderList;
+import com.study.domain.MyBean255ProductsList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -114,13 +116,51 @@ public class Controller26 {
     }
 
     @GetMapping("sub3")
-    public String method3(Model model) throws Exception {
+    public String method3(@RequestParam(value="category", required = false) String[] categoryArr,
+                          Model model) throws Exception {
         Connection conn = dataSource.getConnection();
-        String categorySql = "SELECT * FROM Categories";
+
+        if (categoryArr != null && categoryArr.length > 0) {
+            String questionMarks = "";
+            for (int i = 0; i < categoryArr.length; i++) {
+                questionMarks += "?";
+                if (i != categoryArr.length - 1) {
+                    questionMarks += ",";
+                }
+            }
+            String productSql = STR."""
+                    SELECT *
+                    FROM Products
+                    WHERE CategoryId IN (\{questionMarks})
+                    """;
+
+            var productList = new ArrayList<MyBean255ProductsList>();
+            PreparedStatement pstmt = conn.prepareStatement(productSql);
+            for (int i = 0; i < categoryArr.length; i++) {
+                pstmt.setString((i + 1), categoryArr[i]);
+            }
+            ResultSet resultSet = pstmt.executeQuery();
+            try (pstmt; resultSet) {
+                while (resultSet.next()) {
+                    MyBean255ProductsList data = new MyBean255ProductsList();
+                    data.setId(resultSet.getInt(1));
+                    data.setName(resultSet.getString(2));
+                    data.setSupplierId(resultSet.getString(3));
+                    data.setCategoryId(resultSet.getString(4));
+                    data.setUnit(resultSet.getString(5));
+                    data.setPrice(resultSet.getDouble(6));
+                    productList.add(data);
+                }
+                model.addAttribute("prevCategorySelect",categoryArr);
+                model.addAttribute("products", productList);
+            }
+        }
+
+        String Sql = "SELECT * FROM Categories";
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery(categorySql);
+        ResultSet rs = stmt.executeQuery(Sql);
         var categoryList = new ArrayList<MyBean255Category>();
-        try (rs; stmt;) {
+        try (rs; stmt; conn;) {
             while (rs.next()) {
                 MyBean255Category category = new MyBean255Category();
                 category.setId(rs.getInt(1));
