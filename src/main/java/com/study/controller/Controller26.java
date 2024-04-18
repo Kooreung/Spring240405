@@ -115,6 +115,7 @@ public class Controller26 {
         return "main26/sub2CustomerList";
     }
 
+    // todo : 상품 조회 결과가 카테고리, 가격 순으로
     @GetMapping("sub3")
     public String method3(@RequestParam(value="category", required = false) String[] categoryArr,
                           Model model) throws Exception {
@@ -132,6 +133,7 @@ public class Controller26 {
                     SELECT *
                     FROM Products
                     WHERE CategoryId IN (\{questionMarks})
+                    ORDER BY CategoryId, Price
                     """;
 
             var productList = new ArrayList<MyBean255ProductsList>();

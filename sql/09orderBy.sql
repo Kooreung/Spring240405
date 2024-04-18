@@ -42,7 +42,7 @@ ORDER BY 2, 3;
 
 SELECT *
 FROM Employees
-ORDER BY BirthDate DESC ;
+ORDER BY BirthDate ;
 
 SELECT *
 FROM Customers
