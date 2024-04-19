@@ -68,9 +68,6 @@ public class Controller27 {
         // 6. 현재페이지 산출
         model.addAttribute("currentPage", page);
 
-        // 7. 맨앞 페이지 산출
-
-
         // 고객 레코드 조회
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, offset);
