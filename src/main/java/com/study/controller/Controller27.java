@@ -1,6 +1,7 @@
 package com.study.controller;
 
 import com.study.domain.MyBean255CustomerList;
+import com.study.domain.MyBean255EmployeeList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -92,5 +93,70 @@ public class Controller27 {
         }
 
         return "main27/sub1";
+    }
+
+    @GetMapping("sub2")
+    public String method2(@RequestParam(defaultValue = "1") Integer page, Model model) throws Exception {
+        Connection con = dataSource.getConnection();
+
+        String countSql = "SELECT COUNT(*) FROM Employees";
+        Statement stmt = con.createStatement();
+        ResultSet countRs = stmt.executeQuery(countSql);
+        int total = 0;
+        try (stmt; countRs;) {
+            while (countRs.next()) {
+                total = countRs.getInt(1);
+            }
+        }
+        int lastPageNumber = (total - 1) / 10 + 1;
+        model.addAttribute("lastPageNumber", lastPageNumber);
+
+        int endPageNumber = ((page - 1) / 10 + 1) * 10;
+        int beginPageNumber = endPageNumber - 9;
+        endPageNumber = Math.min(endPageNumber, lastPageNumber);
+
+        model.addAttribute("endPageNumber", endPageNumber);
+        model.addAttribute("beginPageNumber", beginPageNumber);
+
+        int previousPageNumber = beginPageNumber - 10;
+        if(previousPageNumber > 0){
+            model.addAttribute("previousPageNumber", previousPageNumber);
+        }
+
+        int nextPageNumber = beginPageNumber + 10;
+        if(nextPageNumber <= lastPageNumber){
+            model.addAttribute("nextPageNumber", nextPageNumber);
+        }
+
+        model.addAttribute("currentPage", page);
+
+        String sql= """
+                SELECT *
+                FROM Employees
+                ORDER BY EmployeeID
+                LIMIT ?, 10;
+                """;
+
+        int offset = (page - 1) * 10;
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, offset);
+        ResultSet rs = ps.executeQuery();
+        var list = new ArrayList<MyBean255EmployeeList>();
+        try (rs; ps; con) {
+            while(rs.next()) {
+                MyBean255EmployeeList employeeList = new MyBean255EmployeeList();
+                employeeList.setId(rs.getInt(1));
+                employeeList.setLastName(rs.getString(2));
+                employeeList.setFirstName(rs.getString(3));
+                employeeList.setBirthDate(rs.getString(4));
+                employeeList.setPhoto(rs.getString(5));
+                employeeList.setNotes(rs.getString(6));
+
+                list.add(employeeList);
+            }
+        }
+        model.addAttribute("employeeList", list);
+
+        return "main27/sub2";
     }
 }
