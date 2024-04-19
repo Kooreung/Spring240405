@@ -51,7 +51,7 @@
 </div>
 <hr>
 <div style="text-align: center">
-    <c:forEach begin="1" end="10" var="pageNumber">
+    <c:forEach begin="${beginPageNumber}" end="${endPageNumber}" var="pageNumber">
         <c:url var="link" value="/main27/sub1">
             <c:param name="page" value="${pageNumber}"></c:param>
         </c:url>
