@@ -14,6 +14,9 @@
         table, tr, th, td {
             border: 1px solid black;
         }
+        table {
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -33,7 +36,7 @@
         <tbody>
         <c:forEach items="${customerList}" var="customer">
             <tr>
-                <td>${customer.id}</td>
+                <td style="text-align: center">${customer.id}</td>
                 <td>${customer.name}</td>
                 <td>${customer.contactName}</td>
                 <td>${customer.address}</td>
@@ -44,6 +47,17 @@
         </c:forEach>
         </tbody>
     </table>
+</div>
+<hr>
+<div style="text-align: center">
+    <c:forEach begin="1" end="10" var="pageNumber">
+        <c:url var="link" value="/main27/sub1">
+            <c:param name="page" value="${pageNumber}"></c:param>
+        </c:url>
+        <span>
+            <a href="${link}">${pageNumber}</a>
+        </span>
+    </c:forEach>
 </div>
 </body>
 </html>
