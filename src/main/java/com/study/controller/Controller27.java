@@ -49,10 +49,21 @@ public class Controller27 {
         // 3. 페이지 링크의 begin 과 end 산출
         int endPageNumber = ((page - 1) / 10 + 1) * 10;
         int beginPageNumber = endPageNumber - 9;
-        model.addAttribute("endPageNumber", endPageNumber);
-        model.addAttribute("beginPageNumber", beginPageNumber);
         // endPageNUmber 는 최종 페이지를 넘을 수 없다.
         endPageNumber = Math.min(endPageNumber, lastPageNumber);
+        model.addAttribute("endPageNumber", endPageNumber);
+        model.addAttribute("beginPageNumber", beginPageNumber);
+
+        // 4. 다음 버튼 클릭시 이동해야 하는 nextPageNumber 산출
+        int nextPageNumber = beginPageNumber + 10;
+        if(nextPageNumber <= lastPageNumber){
+            model.addAttribute("nextPageNumber", nextPageNumber);
+        }
+        // 5. 이전 버튼 클릭시 이동해야 하는 prevPageNumber 산출
+        int previousPageNumber = beginPageNumber - 10;
+        if(previousPageNumber > 0){
+            model.addAttribute("previousPageNumber", previousPageNumber);
+        }
 
         // 고객 레코드 조회
         PreparedStatement ps = con.prepareStatement(sql);

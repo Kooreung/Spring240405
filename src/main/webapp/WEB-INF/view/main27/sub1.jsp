@@ -51,14 +51,30 @@
 </div>
 <hr>
 <div style="text-align: center">
+    <c:if test="${not empty previousPageNumber}">
+        <c:url var="link" value="/main27/sub1">
+            <c:param name="page" value="${previousPageNumber}" />
+        </c:url>
+        <span>
+            <a href="${link}">◀</a>
+        </span>
+    </c:if>
     <c:forEach begin="${beginPageNumber}" end="${endPageNumber}" var="pageNumber">
         <c:url var="link" value="/main27/sub1">
-            <c:param name="page" value="${pageNumber}"></c:param>
+            <c:param name="page" value="${pageNumber}" />
         </c:url>
         <span>
             <a href="${link}">${pageNumber}</a>
         </span>
     </c:forEach>
+    <c:if test="${not empty nextPageNumber}">
+        <c:url var="link" value="/main27/sub1">
+            <c:param name="page" value="${nextPageNumber}" />
+        </c:url>
+        <span>
+            <a href="${link}">▶</a>
+        </span>
+    </c:if>
 </div>
 </body>
 </html>
