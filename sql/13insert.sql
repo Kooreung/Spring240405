@@ -34,4 +34,8 @@ ORDER BY CustomerID DESC;
 
 DESC Customers;
 
+SELECT *
+FROM Employees
+ORDER BY EmployeeID DESC;
+
 # null : 값이 없음
