@@ -18,6 +18,10 @@
         table {
             width: 100%;
         }
+        .active {
+            font-weight: bold;
+            color : coral;
+        }
     </style>
 </head>
 <body>
@@ -51,12 +55,20 @@
 </div>
 <hr>
 <div style="text-align: center">
+    <c:if test="${currentPage != 1}">
+        <c:url var="link" value="/main27/sub1">
+            <c:param name="page" value="1" />
+        </c:url>
+        <span>
+                <a href="${link}">◀◀ |</a>
+        </span>
+    </c:if>
     <c:if test="${not empty previousPageNumber}">
         <c:url var="link" value="/main27/sub1">
             <c:param name="page" value="${previousPageNumber}" />
         </c:url>
         <span>
-            <a href="${link}">◀</a>
+            <a href="${link}">◀ |</a>
         </span>
     </c:if>
     <c:forEach begin="${beginPageNumber}" end="${endPageNumber}" var="pageNumber">
@@ -64,7 +76,7 @@
             <c:param name="page" value="${pageNumber}" />
         </c:url>
         <span>
-            <a href="${link}">${pageNumber}</a>
+            <a class="${currentPage eq pageNumber ? 'active' : ''}" href="${link}">${pageNumber}</a>
         </span>
     </c:forEach>
     <c:if test="${not empty nextPageNumber}">
@@ -72,7 +84,15 @@
             <c:param name="page" value="${nextPageNumber}" />
         </c:url>
         <span>
-            <a href="${link}">▶</a>
+            <a href="${link}">| ▶</a>
+        </span>
+    </c:if>
+    <c:if test="${currentPage != lastPageNumber}">
+        <c:url var="link" value="/main27/sub1">
+            <c:param name="page" value="${lastPageNumber}" />
+        </c:url>
+        <span>
+            <a href="${link}">| ▶▶</a>
         </span>
     </c:if>
 </div>
