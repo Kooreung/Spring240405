@@ -1,6 +1,7 @@
 package com.study.controller;
 
 import com.study.domain.MyBean255CustomerList;
+import com.study.domain.MyBean255EmployeeList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -80,5 +81,72 @@ public class Controller30 {
 
         rttr.addAttribute("id", customerList.getId());
         return "redirect:/main30/sub1";
+    }
+
+    @GetMapping("sub2")
+    public void method2(Integer id, Model model) throws Exception {
+        if (id != null) {
+            String sql = """
+                SELECT * 
+                FROM Employees
+                WHERE EmployeeID = ?
+                """;
+
+            Connection conn = dataSource.
+                getConnection();
+            PreparedStatement pstmt = conn.
+                prepareStatement(sql);
+            pstmt.setInt(1, id);
+            ResultSet
+                rs = pstmt.executeQuery();
+
+            try(rs;pstmt;conn;) {
+                if (rs.next()) {
+                    MyBean255EmployeeList employeeList =
+                        new MyBean255EmployeeList();
+                    employeeList.setId(rs.getInt(1));
+                    employeeList.setLastName(rs.getString(2));
+                    employeeList.setFirstName(rs.getString(3));
+                    employeeList.setBirthDate(rs.getString(4));
+                    employeeList.setPhoto(rs.getString(5));
+                    employeeList.setNotes(rs.getString(6));
+                    model.addAttribute
+                ("employeeList", employeeList);
+                }
+            }
+        }
+    }
+
+    @PostMapping("sub2/update")
+    public String update2(MyBean255EmployeeList employeeList, RedirectAttributes rttr) throws Exception {
+        String sql = """
+                UPDATE Employees
+                SET LastName = ?,
+                    FirstName = ?,
+                    BirthDate = ?,
+                    Photo = ?,
+                    Notes = ?
+                WHERE EmployeeID = ?
+                """;
+
+        Connection conn = dataSource.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+
+        pstmt.setString(1, employeeList.getLastName());
+        pstmt.setString(2, employeeList.getFirstName());
+        pstmt.setString(3, employeeList.getBirthDate());
+        pstmt.setString(4, employeeList.getPhoto());
+        pstmt.setString(5, employeeList.getNotes());
+        pstmt.setInt(6, employeeList.getId());
+
+        int rows = pstmt.executeUpdate();
+        if (rows > 0) {
+            rttr.addFlashAttribute("message", employeeList.getId() + " has been updated");
+        } else {
+            rttr.addFlashAttribute("message", employeeList.getId() + " has not been updated");
+        }
+
+        rttr.addAttribute("id", employeeList.getId());
+        return ("redirect:/main30/sub2");
     }
 }

@@ -26,3 +26,19 @@ WHERE Country = 'UK';
 
 UPDATE Customers
 SET Country = '영국';
+
+SELECT *
+FROM Products
+WHERE ProductID = 1;
+
+UPDATE Products
+SET Price = Price / 2
+WHERE ProductID = 1;
+
+SELECT *
+FROM Products
+WHERE CategoryID = 2;
+
+UPDATE Products
+SET Price = Price * 3
+WHERE CategoryID = 2;
