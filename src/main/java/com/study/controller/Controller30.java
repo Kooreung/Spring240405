@@ -24,8 +24,10 @@ public class Controller30 {
 
     // 직접 만든 객체 (dependency)
     // 이 작업을 우리가 하지 않고 spring 한테 맡길 수 있다.
-    // = Inversion of Control
-    private Mapper01 mapper = new Mapper01();
+    // = Inversion of Control (IOC)
+    // Dependency Injection (DI)
+    @Autowired
+    private Mapper01 mapper;
 
     @GetMapping("sub1")
     public void method1(Integer id, Model model) throws Exception {

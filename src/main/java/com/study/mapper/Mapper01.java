@@ -2,9 +2,11 @@ package com.study.mapper;
 
 
 import com.study.domain.MyBean255CustomerList;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 
+@Component
 public class Mapper01 {
     public MyBean255CustomerList getCustomerById(Integer id) throws Exception {
         if (id != null) {
