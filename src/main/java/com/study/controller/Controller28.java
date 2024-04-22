@@ -76,6 +76,8 @@ public class Controller28 {
             int rowCount = pstmt.executeUpdate();
             if (rowCount > 0) {
                 rttr.addFlashAttribute("message","새 직원이 등록되었습니다.");
+            } else {
+                rttr.addFlashAttribute("message","등록 실패");
             }
         }
 
