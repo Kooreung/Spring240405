@@ -22,7 +22,7 @@
     <div style="background-color: skyblue">${message}</div>
 </c:if>
 <hr>
-<form action="/main30/sub1/update" method="post">
+<form action="/main30/sub1/update" method="post" onsubmit="return confirm('업데이트 하시겠습니까?')">
     <div>
         번호
         <input type="number" value="${customer.id}" name="id" readonly>
