@@ -1,6 +1,7 @@
 package com.study.mapper;
 
 import com.study.domain.MyBean255CustomerList;
+import com.study.domain.MyBean255EmployeeList;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -32,4 +33,12 @@ public interface Mapper03 {
             (#{name}, #{contactName}, #{address}, #{city}, #{postalCode}, #{country})
             """)
     int insertCustomer(MyBean255CustomerList customer);
+
+    @Insert("""
+            INSERT INTO Employees
+            (LastName, FirstName, BirthDate, Photo, Notes)
+            VALUES 
+            (#{lastName}, #{firstName}, #{birthDate}, #{photo}, #{notes})
+            """)
+    int insertEmployee(MyBean255EmployeeList employee);
 }
