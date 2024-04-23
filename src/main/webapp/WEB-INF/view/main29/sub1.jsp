@@ -66,7 +66,5 @@
         </div>
     </form>
 </c:if>
-
-
 </body>
 </html>
