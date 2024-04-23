@@ -5,6 +5,7 @@ import com.study.domain.MyBean255EmployeeList;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Update;
 
 @Mapper
 public interface Mapper03 {
@@ -41,4 +42,16 @@ public interface Mapper03 {
             (#{lastName}, #{firstName}, #{birthDate}, #{photo}, #{notes})
             """)
     int insertEmployee(MyBean255EmployeeList employee);
+
+    @Update("""
+            UPDATE Employees
+            SET
+                LastName = #{lastName},
+                FirstName = #{firstName},
+                BirthDate = #{birthDate},
+                Photo = #{photo},
+                Notes = #{notes}
+            WHERE EmployeeId = #{id};
+            """)
+    int updateEmployee(MyBean255EmployeeList employee);
 }

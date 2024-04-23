@@ -2,12 +2,15 @@ package com.study.controller;
 
 import com.study.domain.MyBean255CustomerList;
 import com.study.domain.MyBean255EmployeeList;
+import com.study.mapper.Mapper02;
 import com.study.mapper.Mapper03;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -15,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("main32")
 public class Controller32 {
     private final Mapper03 mapper;
+    private final Mapper02 mapper2;
 
     @RequestMapping("sub1")
     public void method1(){
@@ -60,5 +64,31 @@ public class Controller32 {
             rttr.addFlashAttribute("message", "입력되지 않았습니다.");
         }
         return "redirect:/main32/sub5";
+    }
+
+    // Update
+    // 업데이트는 일부 내용만 업데이트 될 수 있으니
+    // 조회 후 업데이트를 하는 방식으로 진행
+    @GetMapping("sub6")
+    public void method7(@RequestParam(value = "id", required = false) Integer eid,
+                        Model model) {
+        if (eid != null) {
+            MyBean255EmployeeList e = mapper2.selectOneEmployee2(eid);
+            model.addAttribute("employee", e);
+        }
+    }
+
+    @PostMapping("sub6/update")
+    public String method7(MyBean255EmployeeList employee, RedirectAttributes rttr) {
+        int rows = mapper.updateEmployee(employee);
+
+        if (rows > 0) {
+            rttr.addFlashAttribute("message", rows + "명 직원이 입력되었습니다");
+        } else {
+            rttr.addFlashAttribute("message", "입력되지 않았습니다.");
+        }
+
+        rttr.addAttribute("id", employee.getId());
+        return "redirect:/main32/sub6";
     }
 }
