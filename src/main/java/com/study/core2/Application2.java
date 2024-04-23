@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 public class Application2 {
     public static void main(String[] args) {
         ConfigurableApplicationContext beanFactory = SpringApplication.run(Application2.class);
-        Dao bean1 = beanFactory.getBean(Dao.class);
-        Controller bean2 = beanFactory.getBean(Controller.class);
+        Dao2 bean1 = beanFactory.getBean(Dao2.class);
+        Controller2 bean2 = beanFactory.getBean(Controller2.class);
 
         System.out.println(System.identityHashCode(bean1));
         System.out.println(System.identityHashCode(bean2));
@@ -22,11 +22,11 @@ public class Application2 {
 
 // @Component : Spring 이 관리하는 객체 ( = Spring bean)
 @Component
-class Dao {
+class Dao2 {
 
 }
 
 @Component
-class Controller {
+class Controller2 {
 
 }
