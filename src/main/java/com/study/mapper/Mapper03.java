@@ -1,6 +1,8 @@
 package com.study.mapper;
 
+import com.study.domain.MyBean255CustomerList;
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
@@ -16,4 +18,18 @@ public interface Mapper03 {
     WHERE CustomerId = #{id};
     """)
     int deleteCustomerById(int id);
+
+    @Delete("""
+            DELETE FROM Employees
+            WHERE EmployeeId = #{id};
+            """)
+    int deleteEmployeeById(int eid);
+
+    @Insert("""
+            INSERT INTO Customers
+            (CustomerName, ContactName, Address, City, PostalCode, Country)
+            VALUES 
+            (#{name}, #{contactName}, #{address}, #{city}, #{postalCode}, #{country})
+            """)
+    int insertCustomer(MyBean255CustomerList customer);
 }
