@@ -91,4 +91,27 @@ public class Controller32 {
         rttr.addAttribute("id", employee.getId());
         return "redirect:/main32/sub6";
     }
+
+    @GetMapping("sub7")
+    public void method8(@RequestParam(value = "id",required = false)Integer cid,
+                        Model model){
+        if (cid != null) {
+            MyBean255CustomerList customerList = mapper2.selectOneCustomer4(cid);
+            model.addAttribute("customerList",customerList);
+        }
+    }
+
+    @PostMapping("sub7/update")
+    public String method9(MyBean255CustomerList customerList, RedirectAttributes rttr){
+        int rows = mapper.updateCustomer(customerList);
+
+        if (rows > 0) {
+            rttr.addFlashAttribute("message", rows + "명 고객이 입력 되었습니다.");
+        } else {
+            rttr.addFlashAttribute("message", "입력되지 않았습니다.");
+        }
+
+        rttr.addAttribute("id", customerList.getId());
+        return "redirect:/main32/sub7";
+    }
 }
