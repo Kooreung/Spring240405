@@ -15,12 +15,15 @@ public class Application7 {
         System.out.println("b1 = " + b1);
         MyClass72 b2 = context.getBean(MyClass72.class);
         System.out.println("b2 = " + b2);
+        Object b3 = context.getBean("myClass71");
+        System.out.println("b3 = " + b3);
+        Object b4 = context.getBean("someMethod1");
+        System.out.println("b4 = " + b4);
     }
 }
 
 @Component
 class MyClass71 {
-
 }
 
 // @Component Annotation 을 붙일 수 없는 클래스로
