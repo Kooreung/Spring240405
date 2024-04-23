@@ -5,6 +5,8 @@ import com.study.domain.MyBean255EmployeeList;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 @Mapper
 public interface Mapper02 {
 
@@ -52,4 +54,53 @@ public interface Mapper02 {
             WHERE EmployeeID = 2;
             """)
     MyBean255EmployeeList selectOneEmployee1();
+
+    @Select("""
+            SELECT EmployeeID id,
+                    LastName,
+                    FirstName,
+                    Birthdate,
+                    Photo,
+                    Notes
+            FROM Employees
+            WHERE EmployeeID = ${id};
+            """)
+    MyBean255EmployeeList selectOneEmployee2(Integer id);
+
+    @Select("""
+            SELECT CustomerID id,
+                   CustomerName name,
+                   ContactName,
+                   Address,
+                   City,
+                   Country,
+                   PostalCode
+            From Customers
+            WHERE CustomerID = ${id};
+            """)
+    MyBean255CustomerList selectOneCustomer4(Integer id);
+
+    @Select("""
+            SELECT CustomerID id,
+                   CustomerName name,
+                   ContactName,
+                   Address,
+                   City,
+                   Country,
+                   PostalCode
+            FROM Customers
+            """)
+    List<MyBean255CustomerList> selectAllCustomer1();
+
+    @Select("""
+            SELECT EmployeeID id,
+                    LastName,
+                    FirstName,
+                    Birthdate,
+                    Photo,
+                    Notes
+            FROM Employees
+            ORDER BY Birthdate DESC
+            """)
+    List<MyBean255EmployeeList> selectAllEmployee1();
 }
