@@ -2,6 +2,7 @@ package com.study.controller;
 
 import com.study.domain.MyBean255CustomerList;
 import com.study.domain.MyBean255EmployeeList;
+import com.study.domain.MyBean255ProductsList;
 import com.study.mapper.Mapper02;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -83,6 +84,13 @@ public class Controller31 {
     @GetMapping("sub11")
     public void method11() {
         List<MyBean255CustomerList> list = mapper.selectCustomersByCountry("usa","uk");
+        list.forEach(System.out::println);
+    }
+
+    // /main31/sub12?min=5&max=55
+    @GetMapping("sub12")
+    public void method12(Double min, Double max) {
+        List<MyBean255ProductsList> list = mapper.selectProductsByPrice(min,max);
         list.forEach(System.out::println);
     }
 }

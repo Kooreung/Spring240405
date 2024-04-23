@@ -2,6 +2,7 @@ package com.study.mapper;
 
 import com.study.domain.MyBean255CustomerList;
 import com.study.domain.MyBean255EmployeeList;
+import com.study.domain.MyBean255ProductsList;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -112,4 +113,17 @@ public interface Mapper02 {
             ORDER BY Country
             """)
     List<MyBean255CustomerList> selectCustomersByCountry(String country1, String country2);
+
+    @Select("""
+            SELECT ProductID id,
+                   ProductName name,
+                   CategoryId,
+                   SupplierId,
+                   Unit,
+                   Price
+            FROM Products
+            WHERE Price BETWEEN #{min} AND #{max}
+            ORDER BY Price
+            """)
+    List<MyBean255ProductsList> selectProductsByPrice(Double min, Double max);
 }
