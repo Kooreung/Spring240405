@@ -116,3 +116,6 @@ INSERT INTO my_table10
 (title, name, age, price, published, inserted)
 VALUES ('이것이 자바다', '신용권', 40, 23422.223, '1999-09-09', '2000-02-20 20:20:02'),
        ('스프링부트', '홍길동', 50, 4321.123, '1090-09-09', '2020-10-02 02:02:20');
+
+SELECT *
+FROM my_table10;

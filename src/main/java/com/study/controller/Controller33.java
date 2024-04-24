@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -33,5 +35,31 @@ public class Controller33 {
     public void method3(){
         List<MyBean333> obj = mapper04.select3();
         obj.forEach(System.out::println);
+    }
+
+    @GetMapping("sub4")
+    public void method4(){
+        mapper04.insert1("hello world","54321","123.456","1999-10-19","2000-10-20 20:10:20");
+    }
+
+    @GetMapping("sub5")
+    public void method5(){
+        String strVal = "hello mybatis";
+        Integer intVal = 7890;
+        Double doubleVal = 3.14;
+        LocalDate dateVal = LocalDate.parse("1999-10-20");
+        LocalDateTime dateTimeVal = LocalDateTime.parse("2000-10-20T20:10:20");
+        mapper04.insert2(strVal, intVal, doubleVal, dateVal, dateTimeVal);
+    }
+
+    @GetMapping("sub6")
+    public void method6(){
+        String titleVal = "패션왕";
+        String nameVal = "기안84";
+        Integer ageVal = 30;
+        Double priceVal = 21000.50;
+        LocalDate dateVal = LocalDate.parse("2000-01-02");
+        LocalDateTime dateTimeVal = LocalDateTime.parse("1984-01-02T20:10:20");
+        mapper04.insert3(titleVal, nameVal, ageVal, priceVal, dateVal, dateTimeVal);
     }
 }
