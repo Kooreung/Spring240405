@@ -62,4 +62,29 @@ public class Controller33 {
         LocalDateTime dateTimeVal = LocalDateTime.parse("1984-01-02T20:10:20");
         mapper04.insert3(titleVal, nameVal, ageVal, priceVal, dateVal, dateTimeVal);
     }
+
+    @GetMapping("sub7")
+    public void method7(){
+        MyBean332 obj = new MyBean332();
+        obj.setStringCol("hello 😊");
+        obj.setIntCol(7890);
+        obj.setDecCol(99.88);
+        obj.setDateCol(LocalDate.parse("1999-10-20"));
+        obj.setDateTimeCol(LocalDateTime.parse("2000-10-20T20:10:20"));
+
+        mapper04.insert4(obj);
+    }
+
+    @GetMapping("sub8")
+    public void method8(){
+        MyBean333 obj = new MyBean333();
+        obj.setTitle("토끼와 거북이");
+        obj.setName("김갑갑");
+        obj.setAge(20);
+        obj.setPrice(21000.50);
+        obj.setPublished(LocalDate.parse("1989-05-05"));
+        obj.setInserted(LocalDateTime.parse("1999-05-05T09:09:09"));
+
+        mapper04.insert5(obj);
+    }
 }

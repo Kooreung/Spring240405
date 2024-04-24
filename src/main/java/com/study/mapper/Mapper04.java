@@ -60,6 +60,24 @@ public interface Mapper04 {
             VALUES
             (#{val1}, #{val2}, #{val3}, #{val4}, #{val5},#{val6})    
             """)
-
     int insert3(String val1, String val2, Integer val3, Double val4, LocalDate val5, LocalDateTime val6);
+
+    @Insert("""
+            INSERT INTO my_table9 
+            (string_col, int_col, dec_col, date_col, date_time_col)
+            VALUES 
+            (#{stringCol}, #{intCol}, #{decCol}, #{dateCol}, #{dateTimeCol})
+            """)
+    int insert4(MyBean332 obj);
+    // bean 사용 시 property 명을 맞춰서 설정한다.
+
+    @Insert("""
+            INSERT INTO my_table10 (
+            title, name, age, price, published, inserted)
+            VALUES
+            (#{title}, #{name}, #{age}, #{price}, #{published},#{inserted})    
+            """)
+    int insert5(MyBean333 obj);
+
+    
 }
