@@ -49,7 +49,56 @@ VALUES (10, 123.25);
 SELECT *
 FROM my_table5;
 
-CREATE TABLE my_table5 (
-    age     INT,
-    height  DEC(5, 2)
+CREATE TABLE my_table6 (
+    unit    INT,
+    price   DEC(6, 2)
 );
+
+INSERT INTO my_table6
+    (unit, price)
+VALUES (3, 12.25*3);
+
+SELECT *
+FROM my_table6;
+
+# 날짜시간
+# DATE ; 날짜 (YYYY-MM-DD)
+# DATETIME ; 날짜시간 (YYYY-MM-DD HH:MM:SS)
+CREATE TABLE my_table7
+(col1 DATE, col2 DATETIME);
+
+DESC my_table7;
+
+INSERT INTO my_table7
+    (col1, col2)
+VALUES ('2000-01-31','1999-12-01 22:20:11');
+
+SELECT *
+FROM my_table7;
+
+CREATE TABLE my_table8
+(today DATE, now DATETIME);
+
+DESC my_table8;
+
+INSERT INTO my_table8
+    (today, now)
+VALUES (now(),now());
+
+SELECT *
+FROM my_table8;
+
+CREATE TABLE my_table9
+(   string_col     VARCHAR(30),
+    int_col         INT,
+    dec_col         DEC(10, 2),
+    date_col        DATE,
+    date_time_col   DATETIME
+);
+
+INSERT INTO my_table9
+(string_col, int_col, dec_col, date_col, date_time_col)
+VALUES ('곧 점심시간', 50000, 54321.98, '2024-02-01', '2020-02-20 20:20:20');
+
+SELECT *
+FROM my_table9;
