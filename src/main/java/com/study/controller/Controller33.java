@@ -2,6 +2,7 @@ package com.study.controller;
 
 import com.study.domain.MyBean331;
 import com.study.domain.MyBean332;
+import com.study.domain.MyBean333;
 import com.study.mapper.Mapper04;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,12 @@ public class Controller33 {
     @GetMapping("sub2")
     public void method2(){
         List<MyBean332> obj = mapper04.select2();
+        obj.forEach(System.out::println);
+    }
+
+    @GetMapping("sub3")
+    public void method3(){
+        List<MyBean333> obj = mapper04.select3();
         obj.forEach(System.out::println);
     }
 }
