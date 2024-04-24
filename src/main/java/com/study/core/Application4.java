@@ -44,5 +44,4 @@ class MyClass42 {
     @Autowired // 설명 다시 찾아봐야 함
     private MyClass41 obj;
     // 42 는 41 에 dependency (의존) 중
-
 }

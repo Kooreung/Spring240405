@@ -25,6 +25,10 @@
 <c:if test="${not empty customerList}">
     <form action="/main32/sub7/update" method="post">
         <div>
+            번호
+            <input type="text" value="${customerList.id}" name="id" readonly>
+        </div>
+        <div>
             이름
             <input type="text" value="${customerList.name}" name="name">
         </div>
@@ -47,9 +51,6 @@
         <div>
             국가
             <input type="text" value="${customerList.country}" name="country">
-        </div>
-        <div style="display: none">
-            <input type="text" value="${customerList.id}" name="id">
         </div>
         <div>
             <input type="submit" value="수정">
