@@ -6,7 +6,9 @@ import com.study.domain.MyBean333;
 import com.study.mapper.Mapper04;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
@@ -86,5 +88,38 @@ public class Controller33 {
         obj.setInserted(LocalDateTime.parse("1999-05-05T09:09:09"));
 
         mapper04.insert5(obj);
+    }
+
+    @GetMapping("sub9")
+    public void select9(Model model) {
+        List<MyBean332> list = mapper04.select2();
+        model.addAttribute("datas", list);
+    }
+
+    @PostMapping("sub9")
+    public void insert9(String str,
+                        String intValue,
+                        String realValue,
+                        String dataValue,
+                        String dataTimeValue){
+        mapper04.insert1(str,intValue,realValue,dataValue,dataTimeValue);
+    }
+
+    @GetMapping("sub10")
+    public String select10(Model model) {
+        List<MyBean332> list = mapper04.select2();
+        model.addAttribute("datas",list);
+
+        return "/main33/sub9";
+    }
+
+    @PostMapping("sub10")
+    public String insert10(String str,
+                           Integer intValue,
+                           Double realValue,
+                           LocalDate dateValue,
+                           LocalDateTime dateTimeValue) {
+        mapper04.insert2(str, intValue, realValue, dateValue, dateTimeValue);
+        return "redirect:/main33/sub10";
     }
 }
