@@ -24,5 +24,6 @@ ADD COLUMN address VARCHAR(10);
 SELECT *
 FROM my_table23;
 
+
 ALTER TABLE my_table23
     ADD COLUMN birth DATE AFTER age;
