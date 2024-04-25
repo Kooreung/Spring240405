@@ -26,3 +26,18 @@ CREATE TABLE my_table21
 DROP TABLE my_table21;
 
 DESC my_table21;
+
+CREATE TABLE my_table22
+(
+    col1 INT PRIMARY KEY ,
+    col2 INT NOT NULL UNIQUE ,
+    col3 INT
+);
+
+DESC my_table22;
+SELECT *
+FROM my_table22;
+
+INSERT INTO my_table22
+(col1, col2, col3)
+VALUES (2,2,NULL);
