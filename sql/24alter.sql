@@ -49,13 +49,14 @@ DESC my_table23;
 
 # Column 제약사항 변경
 ALTER TABLE my_table23
-    MODIFY COLUMN name VARCHAR(20) UNIQUE ;
-
-ALTER TABLE my_table23
     MODIFY COLUMN age int(11) PRIMARY KEY ;
 
-# UNIQUE 제약사항 삭제하기
+# UNIQUE 제약사항 추가 및 삭제
+ALTER TABLE my_table23
+    MODIFY COLUMN name VARCHAR(20) UNIQUE ;
+
 SHOW index FROM my_table23;
+
 ALTER TABLE my_table23
     DROP INDEX name;
 
