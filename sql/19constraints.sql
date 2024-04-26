@@ -36,7 +36,7 @@ SELECT *
 FROM my_table11
 WHERE col1 IS NOT NULL;
 
-# NULL 과 연산은 모두 FALUE, 따라서 != , <> 같은 연산 불가능
+# NULL 과 연산은 모두 FALSE, 따라서 != , <> 같은 연산 불가능
 
 CREATE TABLE my_table12
 (col1 VARCHAR(10) NOT NULL , col2 VARCHAR(10) NOT NULL);
