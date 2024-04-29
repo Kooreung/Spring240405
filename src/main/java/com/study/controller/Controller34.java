@@ -27,4 +27,17 @@ public class Controller34 {
         model.addAttribute("year", year);
         model.addAttribute("month", month);
     }
+
+    // 해당 월의 고객 별 구매금액 조회 (구매금액 높은 순)
+    // service01, mapper05 에 메소드만 추가하여 사용
+    // 필요하면 dto (java bean) 도 작성
+    // 예시 : /main/sub2?year=1996&month=7
+    @GetMapping("sub2")
+    public void sub2(Integer year, Integer month, Model model) {
+        List<Mapper05.CustomerPayment> value = service.customerPaymentList(year, month);
+        model.addAttribute("paymentList", value);
+        model.addAttribute("year", year);
+        model.addAttribute("month", month);
+    }
+
 }

@@ -19,4 +19,10 @@ public class Service01 {
         String to = "%d-%02d-31".formatted(year, month);
         return mapper05.selectIncomeList(from, to);
     }
+
+    public List<Mapper05.CustomerPayment> customerPaymentList(Integer year, Integer month) {
+        String from = "%d-%02d-01".formatted(year, month);
+        String to = "%d-%02d-31".formatted(year, month);
+        return mapper05.selectCustomerPaymentList(from, to);
+    }
 }
