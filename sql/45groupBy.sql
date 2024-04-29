@@ -71,3 +71,17 @@ FROM OrderDetails
               ON Products.ProductID = OrderDetails.ProductID
 GROUP BY Customers.CustomerID, Products.ProductID
 ORDER BY CustomerID, 상품주문수 DESC;
+
+# 상품별, 국가별 판매 개수 조회 (국가(ASC), 상품 판매수(DESC) 순으로 정렬)
+SELECT ProductName   제품명,
+       Country       국가,
+       SUM(Quantity) 수량
+FROM Products
+         JOIN OrderDetails
+              ON Products.ProductID = OrderDetails.ProductID
+         JOIN Orders
+              ON Orders.OrderID = OrderDetails.OrderID
+         JOIN Customers
+              ON Customers.CustomerID = Orders.CustomerID
+GROUP BY Products.ProductID, Country
+ORDER BY Products.ProductID, 수량 DESC;
