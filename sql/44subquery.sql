@@ -28,9 +28,7 @@ WHERE Country = 'mexico';
 # mexico 고객이 주문한 건들 조회
 SELECT *
 FROM Orders
-WHERE CustomerID IN (
-                     2, 3, 13, 58, 80
-    );
+WHERE CustomerID IN (2, 3, 13, 58, 80);
 
 SELECT *
 FROM Orders
