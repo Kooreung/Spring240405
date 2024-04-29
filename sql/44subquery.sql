@@ -90,3 +90,28 @@ WHERE (City, Country)
           IN (SELECT City, Country
               FROM Customers
               WHERE CustomerID IN (1, 2));
+
+SELECT CustomerID, CustomerName, City, Country
+FROM Customers;
+
+SELECT CustomerName, City
+FROM (SELECT CustomerID, CustomerName, City, Country
+      FROM Customers) AS miniCustomers;
+
+# 상관 서브 쿼리
+# (속도가 좀 느리다, JOIN 으로 해결 가능한 지 먼저 확인)
+# 외부 쿼리의 값이 내부 쿼리에 사용될 때
+
+# 각 고객의 주문 횟수
+SELECT CustomerName,
+       Country,
+       (SELECT COUNT(OrderID)
+        FROM Orders
+        WHERE Orders.CustomerID = Customers.CustomerID)
+FROM Customers;
+
+SELECT CustomerName, Country, COUNT(OrderID)
+FROM Customers c
+         JOIN Orders o
+              ON c.CustomerID = o.CustomerID
+GROUP BY c.CustomerID;
