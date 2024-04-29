@@ -115,3 +115,10 @@ FROM Customers c
          JOIN Orders o
               ON c.CustomerID = o.CustomerID
 GROUP BY c.CustomerID;
+
+SELECT ProductName,
+       Price,
+       (SELECT SUM(Price * Quantity)
+        FROM OrderDetails
+        WHERE OrderDetails.ProductID = Products.ProductID) AS 매출액
+FROM Products;
