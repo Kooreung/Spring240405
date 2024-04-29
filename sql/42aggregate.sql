@@ -27,6 +27,8 @@ FROM table12;
 SELECT AVG(number)
 FROM table12;
 
+# IFNULL
+
 SELECT IFNULL(number, 0)
 FROM table12;
 

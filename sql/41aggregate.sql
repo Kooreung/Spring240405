@@ -2,10 +2,19 @@
 # 집계 시 NULL 은 집계 제외 됨
 
 # COUNT : 갯수
-SELECT COUNT(Employees.Notes)
+SELECT COUNT(EmployeeId)
+FROM Employees;
+
+SELECT COUNT(Notes)
 FROM Employees;
 
 SELECT COUNT(Country)
+FROM Customers;
+
+SELECT COUNT(DISTINCT Country)
+FROM Customers;
+
+SELECT Country
 FROM Customers;
 
 
