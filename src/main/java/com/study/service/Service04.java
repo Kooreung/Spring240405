@@ -50,4 +50,8 @@ public class Service04 {
         List<MyBean255EmployeeList> list = mapper.query6(keyword);
         list.forEach(System.out::println);
     }
+
+    public void action7() {
+        mapper.query7();
+    }
 }
