@@ -9,7 +9,14 @@ import java.util.List;
 @Mapper
 public interface Mapper08 {
     @Select("""
-            SELECT * FROM Employees
+            <script>
+            SELECT *
+            FROM Employees
+            WHERE LastName = 'abc'
+            <if test="false">
+            OR FirstName = 'def'
+            </if>
+            </script>
             """)
     List<MyBean255EmployeeList> query1();
 }
