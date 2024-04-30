@@ -1,6 +1,7 @@
 package com.study.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,7 +18,21 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        String encoded = encoder.encode("son7");
-        return new User("son", encoded, List.of());
+        if (username.equals("son")) {
+            String encoded = encoder.encode("son7");
+            return new User("son", encoded, List.of(
+                    new SimpleGrantedAuthority("user")
+            ));
+            // ID, 암호화된 Password, 권한
+            // 한 유저가 여러 권한을 가질 수 있어서 Collection 사용
+        } else if (username.equals("lee")) {
+            String encoded = encoder.encode("lee9");
+            return new User("lee", encoded, List.of(
+                    new SimpleGrantedAuthority("admin"),
+                    new SimpleGrantedAuthority("user")
+            ));
+        } else {
+            throw new UsernameNotFoundException(username + " not found");
+        }
     }
 }
