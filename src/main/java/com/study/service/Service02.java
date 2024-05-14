@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 @Transactional(rollbackFor = Exception.class)
-public class Service2 {
+public class Service02 {
     private final Mapper06 mapper;
 
     public void transferMoney1() {

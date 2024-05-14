@@ -31,6 +31,5 @@ public class Controller38 {
 
     @GetMapping("/path4")
     public void path4() {
-
     }
 }
