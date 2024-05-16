@@ -22,4 +22,14 @@ public class Controller41 {
         System.out.println("Controller41.sub1");
         System.out.println("map = " + map);
     }
+
+    @PostMapping("/sub2")
+    public void sub2(@RequestBody Map<String, Object> map) {
+        System.out.println("map = " + map);
+    }
+
+    @PostMapping("/sub3")
+    public void sub3(@RequestBody Map<String, Object> map) {
+        System.out.println("map = " + map);
+    }
 }
