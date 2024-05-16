@@ -45,4 +45,12 @@ public class Controller42 {
                         "location", "런던"),
                 "item", List.of("축구공", "운동화", "유니폼"));
     }
+
+    @GetMapping("sub4")
+    @ResponseBody
+    public Map<String, Object> method4() {
+        return Map.of("city", Map.of("1번", "서울",
+                        "2번", "대전", "3번", "부산"),
+                "address", "중구", "평균", "3만명");
+    }
 }
