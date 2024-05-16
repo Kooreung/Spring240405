@@ -1,5 +1,6 @@
 package com.study.controller;
 
+import com.study.domain.MyBean411;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,5 +53,15 @@ public class Controller42 {
         return Map.of("city", Map.of("1번", "서울",
                         "2번", "대전", "3번", "부산"),
                 "address", "중구", "평균", "3만명");
+    }
+
+    @GetMapping("sub5")
+    @ResponseBody
+    public MyBean411 method5() {
+        MyBean411 obj = new MyBean411();
+        obj.setName("이강인");
+        obj.setAge(35);
+        return obj;
+        // json 으로 직렬화 된다.
     }
 }
