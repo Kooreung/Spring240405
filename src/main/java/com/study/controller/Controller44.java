@@ -24,14 +24,16 @@ public class Controller44 {
         // 사용자 이름
         String username = map.get("username").toString();
         // 권한
-//        map.get("scope");
+        String scope = map.get("scope").toString();
 
         JwtClaimsSet claims = JwtClaimsSet.builder()
                 .issuer("self")
                 .issuedAt(Instant.now())
                 .expiresAt(Instant.now().plusSeconds(60 * 60 * 24))
                 .subject(username)
-//                .claim("scope", "") // 권한
+                .claim("scope", scope) // 권한
+                // spring security 에서 scope 으로 정의 된 용어가 있으므로
+                // scope 으로 사용해야함
                 .build();
         return jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
     }
@@ -47,6 +49,27 @@ public class Controller44 {
     @PreAuthorize("isAuthenticated()")
     public String user() {
         return "로그인 유저만 접급 가능한 경로";
+    }
+
+    @GetMapping("admin")
+    @ResponseBody
+    @PreAuthorize("hasAuthority('SCOPE_admin')")
+    public String admin() {
+        return "어드민만 접근 가능한 경로";
+    }
+
+    @GetMapping("manager")
+    @ResponseBody
+    @PreAuthorize("hasAuthority('SCOPE_manager')")
+    public String manager() {
+        return "매니저만 접근 가능한 경로";
+    }
+
+    @GetMapping("ma")
+    @ResponseBody
+    @PreAuthorize("hasAnyAuthority('SCOPE_manager', 'SCOPE_admin')")
+    public String ma() {
+        return "매니저 또는 어드민이 접근 가능한 경로";
     }
 }
 
