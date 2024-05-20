@@ -13,6 +13,7 @@ import java.io.IOException;
 @Controller
 @RequestMapping("/api/main45")
 public class Controller45 {
+
     @PostMapping("sub1")
     @ResponseBody
     public String sub1(@RequestParam("name") String name,
@@ -24,6 +25,23 @@ public class Controller45 {
         // 파일의 저장 경로
         String path = "C:/Temp/" + file.getOriginalFilename();
         file.transferTo(new File(path));
+
+        return null;
+    }
+
+    @PostMapping("sub2")
+    @ResponseBody
+    public String sub2(@RequestParam("name") String name,
+                       @RequestParam("file[]") MultipartFile[] file) throws IOException {
+        System.out.println("name = " + name);
+        if (file != null && file.length > 0) {
+            for (MultipartFile f : file) {
+                if (f.getSize() > 0) {
+                    String path = "C:/Temp/" + f.getOriginalFilename();
+                    f.transferTo(new File(path));
+                }
+            }
+        }
 
         return null;
     }
